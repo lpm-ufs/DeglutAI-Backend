@@ -35,6 +35,8 @@ class WebSocketServer:
                 elif message_data.get('action') == 'start-calibration':
                     print("🔄 Iniciando calibração do MPU6050...")
                     await self.data_manager.calibrar_mpu(self.serial_handler) 
+                    await websocket.send(json.dumps({"status": 200, "message": "Calibracao concluida com sucesso."}))
+
                     print("✅ Calibração concluída")
 
                 elif message_data.get('action') == 'stop-recording':
